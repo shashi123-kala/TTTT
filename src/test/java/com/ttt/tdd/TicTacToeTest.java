@@ -1,5 +1,6 @@
 package com.ttt.tdd;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.Rule;
@@ -22,6 +23,12 @@ public class TicTacToeTest {
         ticTacToe.play(2,1);
         exception.expect(RuntimeException.class);
     }
+	
+	@Test
+    public void givenFirstTurnWhenNextPlayerThenX() {
+        assertEquals('X', ticTacToe.nextPlayer());
+    }
+
 	
 	
 }
