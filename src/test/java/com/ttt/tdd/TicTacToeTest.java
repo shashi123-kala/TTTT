@@ -28,6 +28,12 @@ public class TicTacToeTest {
     public void startGameWithFirstPlayer() {
         assertEquals('X', ticTacToe.nextPlayer());
     }
+	
+	@Test
+    public void givenLastTurnWasXWhenNextPlayerThenO() {
+        ticTacToe.play(1,1);
+        assertEquals('O', ticTacToe.nextPlayer());
+    }
 
 	
 	
