@@ -36,6 +36,14 @@ public class TicTacToeTest {
         ticTacToe.play(1,1);
         assertEquals(SECOND_PLAYER, ticTacToe.nextPlayer());
     }
+	
+	@Test
+    public void whenXOutsideBoardThenRuntimeException() {
+        exception.expect(RuntimeException.class);
+        ticTacToe.play(5, 2);
+    }
+	
+	
 
 	
 	

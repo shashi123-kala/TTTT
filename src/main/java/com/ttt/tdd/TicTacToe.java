@@ -9,6 +9,10 @@ public class TicTacToe {
 		if (board[column - 1][row - 1] != '\0') {
 			throw new RuntimeException("Field is occupied!");
 		}
+		if (column < 1 || column > 3) {
+            throw new RuntimeException("X value is outside the board!");
+        }
+		
 	}
 
 	public char nextPlayer() {
