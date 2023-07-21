@@ -5,13 +5,15 @@ public class TicTacToe {
 	private Character[][] board = { { '\0', '\0', '\0' }, { '\0', '\0', '\0' }, { '\0', '\0', '\0' } };
 	private char lastPlayer = '\0';
 
-	public void play(int row, int column) {
-//		if (board[column - 1][row - 1] != '\0') {
-//			throw new RuntimeException("Field is occupied!");
-//		}
+	public String play(int row, int column) {
+		if (board[column - 1][row - 1] != '\0') {
+			throw new RuntimeException("Field is occupied!");
+		}
 		checkAxis(column, "X value is outside the board!");
 		checkAxis(row, "Y value is outside the board!");
-        setField(column, row);
+		setField(column, row);
+		lastPlayer = nextPlayer();
+		return checkWin();
 
 	}
 
@@ -29,11 +31,24 @@ public class TicTacToe {
 		}
 	}
 
-	 private void setField(int column, int row) {
-	        if (board[column - 1][row - 1] != '\0') {
-	            throw new RuntimeException("Field is occupied!");
-	        } else {
-	            board[column - 1][row - 1] = 'X';
-	        }
-	    }
+	private void setField(int column, int row) {
+		if (board[column - 1][row - 1] != '\0') {
+			throw new RuntimeException("Field is occupied!");
+		} else {
+			board[column - 1][row - 1] = 'X';
+		}
+	}
+
+	private String checkWin() {
+//		String winner = "No winner";
+		String winner = "X is the winner";
+		for (int index = 0; index < 3; index++) {
+			if (board[0][index] == lastPlayer && board[1][index] == lastPlayer && board[2][index] == lastPlayer) {
+				if(lastPlayer=='X')
+				return winner ;
+		//return lastPlayer + " is the Winner";
+			}
+		}
+		return winner;
+	}
 }

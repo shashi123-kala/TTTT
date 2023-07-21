@@ -14,6 +14,7 @@ public class TicTacToeTest {
 	public ExpectedException exception = ExpectedException.none();
 	public static final Character FIRST_PLAYER = 'X';
 	public static final Character SECOND_PLAYER = 'O';
+	public static final String X_IS_THE_WINNER = "X is the winner";
 	
 	@Test
 	public void initializeNewTicTacToeGame() {
@@ -49,6 +50,15 @@ public class TicTacToeTest {
         ticTacToe.play(2, 6);
     }
 
+	@Test
+	 public void playWithVerticalLine() {
+        ticTacToe.play(1,1); // X
+        ticTacToe.play(1,2); // O
+        ticTacToe.play(2,1); // X
+        ticTacToe.play(2,2); // O
+        String actual = ticTacToe.play(3,1); // X        
+        assertEquals(X_IS_THE_WINNER, actual);
+    }
 	
 	
 }
