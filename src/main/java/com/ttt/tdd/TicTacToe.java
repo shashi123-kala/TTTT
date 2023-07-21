@@ -9,12 +9,8 @@ public class TicTacToe {
 		if (board[column - 1][row - 1] != '\0') {
 			throw new RuntimeException("Field is occupied!");
 		}
-		if (column < 1 || column > 3) {
-            throw new RuntimeException("X value is outside the board!");
-        }
-		else if (row < 1 || row > 3) {
-            throw new RuntimeException("Y value is outside the board!");
-        }
+		checkAxis(column, "X value is outside the board!");
+		checkAxis(row, "Y value is outside the board!");
 	}
 
 	public char nextPlayer() {
@@ -23,6 +19,12 @@ public class TicTacToe {
 		}
 		return 'X';
 
+	}
+
+	private void checkAxis(int axis, String message) {
+		if (axis < 1 || axis > 3) {
+			throw new RuntimeException(message);
+		}
 	}
 
 }
