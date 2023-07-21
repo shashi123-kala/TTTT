@@ -25,7 +25,7 @@ public class TicTacToeTest {
     }
 	
 	@Test
-    public void givenFirstTurnWhenNextPlayerThenX() {
+    public void startGameWithFirstPlayer() {
         assertEquals('X', ticTacToe.nextPlayer());
     }
 
