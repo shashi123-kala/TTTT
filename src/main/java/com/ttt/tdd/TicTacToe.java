@@ -6,11 +6,13 @@ public class TicTacToe {
 	private char lastPlayer = '\0';
 
 	public void play(int row, int column) {
-		if (board[column - 1][row - 1] != '\0') {
-			throw new RuntimeException("Field is occupied!");
-		}
+//		if (board[column - 1][row - 1] != '\0') {
+//			throw new RuntimeException("Field is occupied!");
+//		}
 		checkAxis(column, "X value is outside the board!");
 		checkAxis(row, "Y value is outside the board!");
+        setField(column, row);
+
 	}
 
 	public char nextPlayer() {
@@ -27,4 +29,11 @@ public class TicTacToe {
 		}
 	}
 
+	 private void setField(int column, int row) {
+	        if (board[column - 1][row - 1] != '\0') {
+	            throw new RuntimeException("Field is occupied!");
+	        } else {
+	            board[column - 1][row - 1] = 'X';
+	        }
+	    }
 }
