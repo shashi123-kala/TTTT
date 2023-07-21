@@ -43,7 +43,11 @@ public class TicTacToeTest {
         ticTacToe.play(5, 2);
     }
 	
-	
+	@Test
+    public void whenYOutsideBoardThenRuntimeException() {
+        exception.expect(RuntimeException.class);
+        ticTacToe.play(2, 6);
+    }
 
 	
 	
