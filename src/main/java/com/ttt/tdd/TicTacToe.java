@@ -1,34 +1,45 @@
 package com.ttt.tdd;
 
-public class TicTacToe {
+import java.util.StringJoiner;
 
+public class TicTacToe {
+	private static final int SIZE = 3;
 	private Character[][] board = { { '\0', '\0', '\0' }, { '\0', '\0', '\0' }, { '\0', '\0', '\0' } };
 	private char lastPlayer = '\0';
 
-	public String play(int row, int column) {
-		if (board[column - 1][row - 1] != '\0') {
-			throw new RuntimeException("Field is occupied!");
-		}
+	public String play(int column, int row) {
 		checkAxis(column, "X value is outside the board!");
 		checkAxis(row, "Y value is outside the board!");
 		lastPlayer = nextPlayer();
-		setField(column, row,lastPlayer);
-		return checkWin();
-
+		setField(column, row, lastPlayer);
+		// return checkWin();
+		if (isWinner()) {
+			return lastPlayer + " is the Winner";
+		}
+		return "No winner";
 	}
 
-	public char nextPlayer() {
-		if (lastPlayer == 'X') {
-			return 'O';
+	private boolean isWinner() {
+		for (int i = 0; i < SIZE; i++) {
+			// if (board[0][i] + board[1][i] + board[2][i] == (lastPlayer * SIZE)) {
+			String str1 = board[0][i].toString();
+			String str2 = board[1][i].toString();
+			String str3 = board[2][i].toString();
+			StringJoiner stj = new StringJoiner("");
+			stj.add(str1);
+			stj.add(str2);
+			stj.add(str3);
+			String s = stj.toString();
+			String l = String.valueOf(lastPlayer);
+			System.out.println(s);
+			if (s.contains(l) && s.length() == 3) {
+				System.out.println("hf");
+				return true;
+			}
+			// }
 		}
-		return 'X';
 
-	}
-
-	private void checkAxis(int axis, String message) {
-		if (axis < 1 || axis > 3) {
-			throw new RuntimeException(message);
-		}
+		return false;
 	}
 
 	private void setField(int column, int row, char lastPlayer) {
@@ -39,16 +50,16 @@ public class TicTacToe {
 		}
 	}
 
-	private String checkWin() {
-//		String winner = "No winner";
-		String winner = "X is the winner";
-		for (int index = 0; index < 3; index++) {
-			if (board[0][index] == lastPlayer && board[1][index] == lastPlayer && board[2][index] == lastPlayer) {
-				if(lastPlayer=='X')
-				return winner ;
-		//return lastPlayer + " is the Winner";
-			}
+	private void checkAxis(int axis, String message) {
+		if (axis < 1 || axis > 3) {
+			throw new RuntimeException(message);
 		}
-		return winner;
+	}
+
+	public char nextPlayer() {
+		if (lastPlayer == 'X') {
+			return 'O';
+		}
+		return 'X';
 	}
 }

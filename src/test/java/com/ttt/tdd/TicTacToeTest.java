@@ -14,7 +14,7 @@ public class TicTacToeTest {
 	public ExpectedException exception = ExpectedException.none();
 	public static final Character FIRST_PLAYER = 'X';
 	public static final Character SECOND_PLAYER = 'O';
-	public static final String X_IS_THE_WINNER = "X is the winner";
+	public static final String X_IS_THE_WINNER = "X is the Winner";
 	
 	@Test
 	public void initializeNewTicTacToeGame() {
