@@ -20,23 +20,30 @@ public class TicTacToe {
 	}
 
 	private boolean isWinner() {
-		for (int i = 0; i < SIZE; i++)
-		{
-			// if (board[0][i] + board[1][i] + board[2][i] == (lastPlayer * SIZE)) {
-			
-			
+		char diagonal1 = '\0';
+        char diagonal2 = '\0';
+		for (int i = 0; i < SIZE; i++) {
+	        
+			diagonal1 += board[i][i];
+            diagonal2 += board[i][SIZE - i - 1];
+            
 			String playr = String.valueOf(lastPlayer);
 			String horizontal = board[0][i].toString().concat(board[1][i].toString()).concat(board[2][i].toString());
-			String vertical =   board[i][0].toString().concat(board[i][1].toString()).concat(board[i][2].toString());	
-			String bottomDiagonalLeft = board[0][0].toString().concat(board[1][1].toString()).concat(board[2][2].toString());
-			String bottomDiagonalRight =board[2][0].toString().concat(board[1][1].toString()).concat(board[0][2].toString());
+			String vertical = board[i][0].toString().concat(board[i][1].toString()).concat(board[i][2].toString());
+			String bottomDiagonalLeft = board[0][0].toString().concat(board[1][1].toString())
+					.concat(board[2][2].toString());
+			String bottomDiagonalRight = board[2][0].toString().concat(board[1][1].toString())
+					.concat(board[0][2].toString());
+
+			if (horizontal.contains(playr) && horizontal.length() == 3)
+				return true;
+
+			else if (vertical.contains(playr) && vertical.length() == 3)
+				return true;
+
+			else if (diagonal1 == bottomDiagonalLeft.length() || diagonal2 ==bottomDiagonalRight.length())
+				return true;
 			
-			if (horizontal.contains(playr) && horizontal.length() == 3) return true;
-			
-			else if (vertical.contains(playr) && vertical.length() == 3) return true;
-			
-			else if (bottomDiagonalLeft.contains(playr)&&bottomDiagonalLeft.length()==3) return true;
-			else if(bottomDiagonalRight.contains(playr)&&bottomDiagonalRight.length()==3) return true;
 
 			// }
 		}
